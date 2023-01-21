@@ -16,5 +16,16 @@ model User {
   email    String @unique
   password String
 
+  games Game[]
+
   @@map("users")
+}
+
+model Game {
+  id Int @id @map("_id")
+
+  user   String @db.ObjectId
+  userId User   @relation(fields: [user], references: [id])
+
+  @@map("games")
 }
